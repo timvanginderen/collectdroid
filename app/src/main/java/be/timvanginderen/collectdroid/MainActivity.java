@@ -33,8 +33,9 @@ public class MainActivity extends Activity {
         PacketWriter writer = new PacketWriter();
         try {
             writer.write(data);
+            Log.e("----- writer.write() finished", "");
         } catch (IOException e) {
-            Log.e("IOException while trying to send pluginData", e.getMessage());
+            Log.e("----- IOException while trying to send pluginData", e.getMessage());
         }
 
     }

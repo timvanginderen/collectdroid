@@ -36,7 +36,7 @@ public class PacketWriter {
 
     private ByteArrayOutputStream _bos;
     private DataOutputStream _os;
-    private final TypesDB _types = TypesDB.getInstance();
+//    private final TypesDB _types = TypesDB.getInstance();
 
     public PacketWriter() {
         this(new ByteArrayOutputStream(Network.BUFFER_SIZE));
@@ -76,19 +76,19 @@ public class PacketWriter {
         writeString(Network.TYPE_TYPE_INSTANCE, data.getTypeInstance());
         
         if (data instanceof ValueList) {
-            ValueList vl = (ValueList)data;
-            List<DataSource> ds = _types.getType(type);
-            List<Number> values = vl.getValues();
-
-            if ((ds != null) && (ds.size() != values.size())) {
-                String msg =
-                    type + " datasource mismatch, expecting " +
-                    ds.size() + ", given " + values.size();
-                throw new IOException(msg);
-            }
-
-            writeNumber(Network.TYPE_INTERVAL, vl.getInterval());
-            writeValues(ds, values);
+//            ValueList vl = (ValueList)data;
+//            List<DataSource> ds = _types.getType(type);
+//            List<Number> values = vl.getValues();
+//
+//            if ((ds != null) && (ds.size() != values.size())) {
+//                String msg =
+//                    type + " datasource mismatch, expecting " +
+//                    ds.size() + ", given " + values.size();
+//                throw new IOException(msg);
+//            }
+//
+//            writeNumber(Network.TYPE_INTERVAL, vl.getInterval());
+//            writeValues(ds, values);
         }
         else {
             //XXX Notification
