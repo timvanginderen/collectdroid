@@ -2,8 +2,14 @@ package be.timvanginderen.collectdroid;
 
 import android.app.Activity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+
+import org.collectd.api.PluginData;
+import org.collectd.protocol.PacketWriter;
+
+import java.io.IOException;
 
 
 public class MainActivity extends Activity {
@@ -12,6 +18,25 @@ public class MainActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+
+        //Start test
+        PluginData data = new PluginData();
+        data.setHost("AndroidBox");
+        data.setTime(System.currentTimeMillis());
+        data.setPlugin("CollectDroid");
+        data.setPluginInstance("1");
+        data.setType("cpu");
+        data.setTypeInstance("idle");
+
+        //add setValues implementation
+        PacketWriter writer = new PacketWriter();
+        try {
+            writer.write(data);
+        } catch (IOException e) {
+            Log.e("IOException while trying to send pluginData", e.getMessage());
+        }
+
     }
 
 
